@@ -17,11 +17,13 @@ extends Control
 @onready var matrix_range_output = $"HBoxContainer4/matrix range output"
 @onready var calculate_linear_system_button = $"VBoxContainer2/calculate linear system button"
 @onready var window = $Window
-@onready var window_output_richlabel = $"Window/window output control/window output richlabel"
+@onready var show_window_output = $"VBoxContainer2/show window output"
+@onready var copy_text_button = $"Window/window output control/VBoxContainer/copy text button"
+@onready var window_output_richlabel = $"Window/window output control/VBoxContainer/window output richlabel"
 
 
 func _ready():
-	#window.visible = false
+	window.visible = false
 	generate_matrix_button.pressed.connect(_on_generate_matrix_button_pressed)
 	find_matrix_range_button.pressed.connect(_on_find_matrix_range_pressed)
 	find_inverse_matrix_button.pressed.connect(_on_find_inverse_matrix_button_pressed)
@@ -40,25 +42,6 @@ func _process(_delta):
 	else: 
 		find_inverse_matrix_button.disabled = false
 		find_matrix_range_button.disabled = false
-
-
-func _on_find_matrix_range_pressed():
-	var matrix = parse_matrix(matrix_a_input.text)
-	var rank = calculate_matrix_rank(matrix)
-	matrix_range_output.text = str(rank)
-
-
-func _on_generate_matrix_button_pressed():
-	var rows = int(rows_input.text.strip_edges())
-	var cols = int(columns_input.text.strip_edges())
-	
-	var matrix_a = generate_matrix(rows, cols) if matrix_a_checkbox.button_pressed else []
-	var matrix_b = generate_matrix(rows, cols) if matrix_b_checkbox.button_pressed else []
-	
-	if matrix_a_checkbox.button_pressed:
-		matrix_a_input.text = format_matrix(matrix_a)
-	if matrix_b_checkbox.button_pressed:
-		matrix_b_input.text = format_matrix(matrix_b)
 
 
 func generate_matrix(rows: int, cols: int) -> Array:
@@ -117,20 +100,6 @@ func calculate_matrix_rank(matrix: Array) -> int:
 		rank += 1
 	
 	return rank
-
-
-func _on_find_inverse_matrix_button_pressed():
-	var matrix = parse_matrix(matrix_a_input.text)
-	if matrix.size() != matrix[0].size():
-		inverse_matrix_output.text = "Matrix must be square to have an inverse."
-		return
-
-	var inverse = calculate_inverse_matrix(matrix)
-
-	if typeof(inverse) == TYPE_STRING:
-		inverse_matrix_output.text = inverse
-	else:
-		inverse_matrix_output.text = format_matrix_with_rounding(inverse)
 
 
 func format_matrix_with_rounding(matrix: Array) -> String:
@@ -213,36 +182,36 @@ func transpose(matrix: Array) -> Array:
 	return transposed
 
 
-func _on_calculate_linear_system_button_pressed():
-	var matrix_a = parse_matrix(matrix_a_input.text)
-	var matrix_b = parse_matrix(matrix_b_input.text)
+func calculate_inverse_matrix_with_protocol(matrix: Array) -> Array:
+	var n = matrix.size()
+	if n == 0:
+		return []
 
-	if matrix_a.size() != matrix_a[0].size() or matrix_a.size() != matrix_b.size():
-		window_output_richlabel.text=("\n[color=red]Помилка: Розмірність матриць не підходить для розв'язання СЛАР.[/color]")
-		return
+	var det = determinant(matrix)
+	if det == 0:
+		return []
 
-	window_output_richlabel.text = ("\n[color=blue]Згенеровано протокол обчислення:[/color]")
-	window_output_richlabel.text=("\n[color=blue]Знаходження розв’язків СЛАР 1-м методом (за допомогою оберненої матриці):[/color]")
+	if n == 1:
+		return [[1.0 / det]]
 
-	var inverse_a = calculate_inverse_matrix(matrix_a)
+	var cofactor_matrix = []
+	for i in range(n):
+		cofactor_matrix.append([])
+		for j in range(n):
+			var submatrix = get_submatrix(matrix, i, j)
+			var cofactor = pow(-1, i + j) * determinant(submatrix)
+			cofactor_matrix[i].append(cofactor)
 
-	if typeof(inverse_a) == TYPE_STRING:
-		window_output_richlabel.text=("\n[color=red]Помилка обчислення оберненої матриці: " + inverse_a + "[/color]")
-		return
+	var adjugate_matrix = transpose(cofactor_matrix)
 
+	var inverse_matrix = []
+	for i in range(n):
+		inverse_matrix.append([])
+		for j in range(n):
+			inverse_matrix[i].append(adjugate_matrix[i][j] / det)
 
-	window_output_richlabel.text=("\n[color=green]Знаходження оберненої матриці:[/color]")
-	window_output_richlabel.text=("\n[color=green]Вхідна матриця:[/color]\n" + format_matrix(matrix_a))
+	return inverse_matrix
 
-	var x = multiply_matrix(inverse_a, matrix_b)
-
-	if typeof(x) == TYPE_STRING:
-		window_output_richlabel.text=("\n[color=red]Помилка множення матриць: " + x + "[/color]")
-		return
-
-	window_output_richlabel.text=("\n[color=green]Розв'язки СЛАР:[/color]\n" + format_matrix(x))
-	inverse_matrix_output.text = format_matrix_with_rounding(inverse_a)
-	matrix_x_output.text = format_matrix_with_rounding(x)
 
 func multiply_matrix(matrix_a: Array, matrix_b: Array) -> Array:
 	var rows_a = matrix_a.size()
@@ -262,11 +231,105 @@ func multiply_matrix(matrix_a: Array, matrix_b: Array) -> Array:
 			result[i].append(sum)
 
 	return result
+	
+
+func _on_find_matrix_range_pressed():
+	var matrix = parse_matrix(matrix_a_input.text)
+	var rank = calculate_matrix_rank(matrix)
+	matrix_range_output.text = str(rank)
+
+
+func _on_generate_matrix_button_pressed():
+	var rows = int(rows_input.text.strip_edges())
+	var cols = int(columns_input.text.strip_edges())
+	
+	var matrix_a = generate_matrix(rows, cols) if matrix_a_checkbox.button_pressed else []
+	var matrix_b = generate_matrix(rows, cols) if matrix_b_checkbox.button_pressed else []
+	
+	if matrix_a_checkbox.button_pressed:
+		matrix_a_input.text = format_matrix(matrix_a)
+	if matrix_b_checkbox.button_pressed:
+		matrix_b_input.text = format_matrix(matrix_b)
+
+
+func _on_find_inverse_matrix_button_pressed():
+	var matrix = parse_matrix(matrix_a_input.text)
+	if matrix.size() != matrix[0].size():
+		inverse_matrix_output.text = "Matrix must be square to have an inverse."
+		return
+
+	var inverse = calculate_inverse_matrix(matrix)
+
+	if typeof(inverse) == TYPE_STRING:
+		inverse_matrix_output.text = inverse
+	else:
+		inverse_matrix_output.text = format_matrix_with_rounding(inverse)
+
+
+func _on_calculate_linear_system_button_pressed():
+	var matrix_a = parse_matrix(matrix_a_input.text)
+	var matrix_b = parse_matrix(matrix_b_input.text)
+
+	if matrix_a.size() != matrix_a[0].size() or matrix_a.size() != matrix_b.size():
+		window_output_richlabel.text = "\nПомилка: Розмірність матриць не підходить для розв'язання СЛАР."
+		return
+
+	window_output_richlabel.text = "Згенеровано протокол обчислення:"
+	window_output_richlabel.text += "\nЗнаходження розв’язків СЛАР 1-м методом (за допомогою оберненої матриці):"
+
+	window_output_richlabel.text += "\nЗнаходження оберненої матриці:"
+	window_output_richlabel.text += "\nВхідна матриця:\n" + format_matrix(matrix_a)
+
+	var inverse_a = calculate_inverse_matrix_with_protocol(matrix_a)
+
+	if typeof(inverse_a) == TYPE_STRING:
+		window_output_richlabel.text = "\nПомилка обчислення оберненої матриці: " + inverse_a + ""
+		return
+
+	window_output_richlabel.text += "\nОбернена матриця:\n" + format_matrix_with_rounding(inverse_a)
+
+	window_output_richlabel.text += "\nВхідна матриця В:\n" + format_matrix(matrix_b)
+
+	window_output_richlabel.text += "\nОбчислення розв'язків:"
+	var x = multiply_matrix(inverse_a, matrix_b)
+
+	if typeof(x) == TYPE_STRING:
+		window_output_richlabel.text += "\nПомилка множення матриць: " + x + ""
+		return
+
+	for i in range(x.size()):
+		var calculation_string = "X[" + str(i + 1) + "] = "
+		for j in range(inverse_a.size()):
+			calculation_string += str(matrix_b[j][0]) + " * " + str(roundf(inverse_a[i][j] * 100) / 100.0) + " + "
+		calculation_string = calculation_string.trim_suffix(" + ") + " = " + str(roundf(x[i][0] * 100) / 100.0)
+		window_output_richlabel.text += "\n" + calculation_string
+
+	window_output_richlabel.text += "\nРозв'язки СЛАР:\n" + format_matrix(x)
+
+	inverse_matrix_output.text = format_matrix_with_rounding(inverse_a)
+	matrix_x_output.text = format_matrix_with_rounding(x)
+
+
+#----------------------------------------------------------------#
 
 
 func _on_github_pressed():
 	OS.shell_open("https://github.com/husarenko/ASPPR_Lab_1")
 
 
+var window_toggled = false
+
+
 func _on_window_close_requested():
 	window.visible = false
+	window_toggled = false
+
+
+func _on_show_window_output_pressed():
+	window_toggled = !window_toggled
+	window.visible = window_toggled
+
+
+func _on_save_as_file_button_pressed():
+	var text_to_copy = window_output_richlabel.get_text()
+	DisplayServer.clipboard_set(text_to_copy)

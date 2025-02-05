@@ -182,13 +182,13 @@ text = " матриця B"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.041
-anchor_top = 0.408
+anchor_top = 0.383
 anchor_right = 0.959
-anchor_bottom = 0.5
+anchor_bottom = 0.467
 offset_left = 0.259998
-offset_top = -15.84
+offset_top = 0.159958
 offset_right = -0.26001
-offset_bottom = -21.28
+offset_bottom = -0.160004
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -224,10 +224,10 @@ scroll_fit_content_height = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 384.0
-offset_right = 162.0
-offset_bottom = 450.0
+offset_left = 21.0
+offset_top = 411.0
+offset_right = 167.0
+offset_bottom = 561.0
 
 [node name="calculate linear system button" type="Button" parent="VBoxContainer2"]
 layout_mode = 2
@@ -238,6 +238,13 @@ text = "Обчислити СЛАУ"
 layout_mode = 2
 text = "Для обчислення СЛАУ використовується перший метод"
 label_settings = SubResource("LabelSettings_mvaub")
+autowrap_mode = 2
+
+[node name="show window output" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+text = "Протокол обчислень"
 autowrap_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="."]
@@ -258,7 +265,6 @@ stretch_mode = 0
 title = "Протокол обчислень"
 initial_position = 1
 size = Vector2i(480, 445)
-visible = false
 
 [node name="window output control" type="Control" parent="Window"]
 layout_mode = 3
@@ -268,16 +274,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="window output richlabel" type="RichTextLabel" parent="Window/window output control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/window output control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="copy text button" type="Button" parent="Window/window output control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+text = "Скопіювати текст"
+
+[node name="window output richlabel" type="RichTextLabel" parent="Window/window output control/VBoxContainer"]
+layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
-text = "asdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasda"
+text = "..."
+selection_enabled = true
 
+[connection signal="pressed" from="VBoxContainer2/show window output" to="." method="_on_show_window_output_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_github_pressed"]
 [connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="Window/window output control/VBoxContainer/copy text button" to="." method="_on_save_as_file_button_pressed"]
