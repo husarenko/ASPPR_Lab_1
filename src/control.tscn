@@ -1,0 +1,283 @@
+[gd_scene load_steps=4 format=3 uid="uid://1d1uwu0622yn"]
+
+[ext_resource type="Script" path="res://control.gd" id="1_wk1xs"]
+[ext_resource type="Texture2D" uid="uid://kylyx44e7mdy" path="res://github.png" id="2_pdxve"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mvaub"]
+font_size = 12
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wk1xs")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.317793, 0.152731, 0.236793, 1)
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 16.0
+offset_right = 406.0
+offset_bottom = 208.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="matrix A label" type="Label" parent="HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+text = "Матриця А"
+
+[node name="matrix A input" type="TextEdit" parent="HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="matrix B label" type="Label" parent="HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+text = "Матриця B"
+
+[node name="matrix B input" type="TextEdit" parent="HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 384.0
+offset_right = 614.0
+offset_bottom = 625.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="matrix X label" type="Label" parent="HBoxContainer5/VBoxContainer2"]
+layout_mode = 2
+text = "Матриця Х"
+
+[node name="matrix X output" type="TextEdit" parent="HBoxContainer5/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 1
+scroll_fit_content_height = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="inverse matrix label" type="Label" parent="HBoxContainer5/VBoxContainer3"]
+layout_mode = 2
+text = "Обернена матриця"
+
+[node name="inverse matrix output" type="TextEdit" parent="HBoxContainer5/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 1
+scroll_fit_content_height = true
+
+[node name="rows label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 23.0
+offset_right = 503.0
+offset_bottom = 46.0
+text = "Рядки:"
+
+[node name="rows input" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 48.0
+offset_right = 513.0
+offset_bottom = 83.0
+focus_mode = 1
+scroll_fit_content_height = true
+
+[node name="columns label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 23.0
+offset_right = 596.0
+offset_bottom = 46.0
+text = "Стовбці:"
+
+[node name="columns input" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 48.0
+offset_right = 593.0
+offset_bottom = 83.0
+focus_mode = 1
+scroll_fit_content_height = true
+
+[node name="generate matrix button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 94.0
+offset_right = 593.0
+offset_bottom = 125.0
+focus_mode = 0
+disabled = true
+text = "Згенерувати"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_top = 216.0
+offset_right = 500.0
+offset_bottom = 256.0
+
+[node name="calculations report checkbox" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "формувати протокол обчислень"
+
+[node name="on screen checkbox" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "на екран"
+
+[node name="in file checkbox" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+text = "в файл"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 130.0
+offset_right = 566.0
+offset_bottom = 196.0
+
+[node name="matrix A checkbox" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = " матриця А"
+
+[node name="matrix B checkbox" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = " матриця B"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.408
+anchor_right = 0.959
+anchor_bottom = 0.5
+offset_left = 0.259998
+offset_top = -15.84
+offset_right = -0.26001
+offset_bottom = -21.28
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="find matrix range button" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Знайти ранг матриці"
+
+[node name="find inverse matrix button" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Знайти обернену матрицю"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 328.0
+offset_right = 232.0
+offset_bottom = 368.0
+
+[node name="matrix range label" type="Label" parent="HBoxContainer4"]
+layout_mode = 2
+text = "Ранг матриці"
+
+[node name="matrix range output" type="TextEdit" parent="HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+editable = false
+scroll_fit_content_height = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 384.0
+offset_right = 162.0
+offset_bottom = 450.0
+
+[node name="calculate linear system button" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+text = "Обчислити СЛАУ"
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Для обчислення СЛАУ використовується перший метод"
+label_settings = SubResource("LabelSettings_mvaub")
+autowrap_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -51.0
+offset_right = 51.0
+offset_bottom = -16.0
+grow_vertical = 0
+texture_normal = ExtResource("2_pdxve")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Window" type="Window" parent="."]
+title = "Протокол обчислень"
+initial_position = 1
+size = Vector2i(480, 445)
+visible = false
+
+[node name="window output control" type="Control" parent="Window"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="window output richlabel" type="RichTextLabel" parent="Window/window output control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "asdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasdaasdasdsadasdasdsdasda"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_github_pressed"]
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
