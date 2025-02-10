@@ -58,7 +58,11 @@ func generate_matrix(rows: int, cols: int) -> Array:
 func format_matrix(matrix: Array) -> String:
 	var result = ""
 	for row in matrix:
-		result += " ".join(row.map(func(x): return str(x))) + "\n"
+		#result += " ".join(row.map(func(x): return str(x))) + "\n"
+		var formatted_row = []
+		for value in row:
+			formatted_row.append(str(roundf(value * 100) / 100.0))
+		result += " ".join(formatted_row) + "\n"
 	return result.strip_edges(true, true)
 
 
@@ -182,6 +186,37 @@ func transpose(matrix: Array) -> Array:
 	return transposed
 
 
+#func calculate_inverse_matrix_with_protocol(matrix: Array) -> Array:
+	#var n = matrix.size()
+	#if n == 0:
+		#return []
+#
+	#var det = determinant(matrix)
+	#if det == 0:
+		#return []
+#
+	#if n == 1:
+		#return [[1.0 / det]]
+#
+	#var cofactor_matrix = []
+	#for i in range(n):
+		#cofactor_matrix.append([])
+		#for j in range(n):
+			#var submatrix = get_submatrix(matrix, i, j)
+			#var cofactor = pow(-1, i + j) * determinant(submatrix)
+			#cofactor_matrix[i].append(cofactor)
+#
+	#var adjugate_matrix = transpose(cofactor_matrix)
+#
+	#var inverse_matrix = []
+	#for i in range(n):
+		#inverse_matrix.append([])
+		#for j in range(n):
+			#inverse_matrix[i].append(adjugate_matrix[i][j] / det)
+#
+	#return inverse_matrix
+
+
 func calculate_inverse_matrix_with_protocol(matrix: Array) -> Array:
 	var n = matrix.size()
 	if n == 0:
@@ -194,23 +229,60 @@ func calculate_inverse_matrix_with_protocol(matrix: Array) -> Array:
 	if n == 1:
 		return [[1.0 / det]]
 
-	var cofactor_matrix = []
-	for i in range(n):
-		cofactor_matrix.append([])
+	var m = matrix.duplicate(true)
+	var identity = create_identity_matrix(n)
+	var steps = 0
+
+	var protocol_steps = []
+	protocol_steps.append("\nПротокол обчислення:")
+
+	for r in range(n):
+		steps += 1
+		protocol_steps.append("\nКрок #" + str(steps))
+
+		var pivot_row = r
+		while pivot_row < n and m[pivot_row][r] == 0:
+			pivot_row += 1
+
+		if pivot_row == n:
+			return []
+
+		if pivot_row != r:
+			m.swap(r, pivot_row)
+			identity.swap(r, pivot_row)
+			protocol_steps.append("\nПерестановка рядків: R" + str(r+1) + " <-> R" + str(pivot_row+1))
+
+		var pivot = m[r][r]
+		protocol_steps.append("\nРозв’язувальний елемент: A[" + str(r+1) + ", " + str(r+1) + "] = " + str(roundf(pivot * 100) / 100.0))
+
+		for i in range(n):
+			if i != r:
+				var factor = m[i][r] / pivot
+				for j in range(n):
+					m[i][j] -= factor * m[r][j]
+					identity[i][j] -= factor * identity[r][j]
+				protocol_steps.append("\nМатриця після виконання ЗЖВ:\n" + format_matrix_with_rounding(m))
+				protocol_steps.append("\nОбернена матриця:\n" + format_matrix_with_rounding(identity))
+
 		for j in range(n):
-			var submatrix = get_submatrix(matrix, i, j)
-			var cofactor = pow(-1, i + j) * determinant(submatrix)
-			cofactor_matrix[i].append(cofactor)
+			m[r][j] /= pivot
+			identity[r][j] /= pivot
 
-	var adjugate_matrix = transpose(cofactor_matrix)
+	window_output_richlabel.text += "".join(protocol_steps)
 
-	var inverse_matrix = []
+	return identity
+
+
+func create_identity_matrix(n: int) -> Array:
+	var identity = []
 	for i in range(n):
-		inverse_matrix.append([])
+		var row = []
 		for j in range(n):
-			inverse_matrix[i].append(adjugate_matrix[i][j] / det)
+			row.append(1.0 if i == j else 0.0)
+		identity.append(row)
+	return identity
 
-	return inverse_matrix
+
 
 
 func multiply_matrix(matrix_a: Array, matrix_b: Array) -> Array:
