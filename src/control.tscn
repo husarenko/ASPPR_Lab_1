@@ -26,11 +26,15 @@ grow_vertical = 2
 color = Color(0.317793, 0.152731, 0.236793, 1)
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 16.0
-offset_right = 406.0
-offset_bottom = 208.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.025
+anchor_right = 0.634
+anchor_bottom = 0.325
+offset_left = -0.119999
+offset_right = 0.23999
+offset_bottom = -1.52588e-05
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer3"]
 layout_mode = 2
@@ -59,11 +63,15 @@ size_flags_vertical = 3
 focus_mode = 1
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 197.0
-offset_top = 384.0
-offset_right = 614.0
-offset_bottom = 625.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.308
+anchor_top = 0.6
+anchor_right = 0.959
+anchor_bottom = 0.977
+offset_left = -0.120026
+offset_right = 0.23999
+offset_bottom = -0.280029
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer5"]
 layout_mode = 2
@@ -94,45 +102,67 @@ focus_mode = 1
 scroll_fit_content_height = true
 
 [node name="rows label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 449.0
-offset_top = 23.0
-offset_right = 503.0
-offset_bottom = 46.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.702
+anchor_top = 0.036
+anchor_right = 0.786
+anchor_bottom = 0.072
+offset_left = -0.280029
+offset_top = -0.0400009
+offset_right = -0.0400085
+offset_bottom = -0.0800018
 text = "Рядки:"
 
 [node name="rows input" type="TextEdit" parent="."]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 48.0
-offset_right = 513.0
-offset_bottom = 83.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.075
+anchor_right = 0.802
+anchor_bottom = 0.13
+offset_left = -3.05176e-05
+offset_right = -0.280029
+offset_bottom = -0.200005
 focus_mode = 1
 scroll_fit_content_height = true
 
 [node name="columns label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 529.0
-offset_top = 23.0
-offset_right = 596.0
-offset_bottom = 46.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.827
+anchor_top = 0.036
+anchor_right = 0.931
+anchor_bottom = 0.072
+offset_left = -0.280029
+offset_top = -0.0400009
+offset_right = 0.159973
+offset_bottom = -0.0800018
 text = "Стовбці:"
 
 [node name="columns input" type="TextEdit" parent="."]
-layout_mode = 0
-offset_left = 528.0
-offset_top = 48.0
-offset_right = 593.0
-offset_bottom = 83.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.825
+anchor_top = 0.075
+anchor_right = 0.927
+anchor_bottom = 0.13
+offset_right = -0.280029
+offset_bottom = -0.200005
 focus_mode = 1
 scroll_fit_content_height = true
 
 [node name="generate matrix button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 94.0
-offset_right = 593.0
-offset_bottom = 125.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.147
+anchor_right = 0.927
+anchor_bottom = 0.195
+offset_left = -3.05176e-05
+offset_top = -0.0800018
+offset_right = -0.280029
+offset_bottom = 0.199997
 focus_mode = 0
 disabled = true
 text = "Згенерувати"
@@ -162,11 +192,16 @@ focus_mode = 0
 text = "в файл"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 130.0
-offset_right = 566.0
-offset_bottom = 196.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.203
+anchor_right = 0.884
+anchor_bottom = 0.306
+offset_left = -3.05176e-05
+offset_top = 0.0799866
+offset_right = 0.23999
+offset_bottom = 0.159988
 
 [node name="matrix A checkbox" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
@@ -181,14 +216,14 @@ text = " матриця B"
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.041
+anchor_left = 0.033
 anchor_top = 0.383
-anchor_right = 0.959
+anchor_right = 0.967
 anchor_bottom = 0.467
-offset_left = 0.259998
-offset_top = 0.159958
-offset_right = -0.26001
-offset_bottom = -0.160004
+offset_left = -0.119999
+offset_top = -0.119995
+offset_right = 0.119934
+offset_bottom = 0.119995
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -204,12 +239,31 @@ size_flags_horizontal = 3
 focus_mode = 0
 text = "Знайти обернену матрицю"
 
+[node name="own variant button" type="Button" parent="."]
+layout_mode = 2
+anchor_left = 0.596
+anchor_top = 0.5
+anchor_right = 0.952
+anchor_bottom = 0.579
+offset_left = 0.0599976
+offset_top = -2.72003
+offset_right = 0.219971
+offset_bottom = -0.28006
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Власний варіант"
+
 [node name="HBoxContainer4" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 328.0
-offset_right = 232.0
-offset_bottom = 368.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.512
+anchor_right = 0.362
+anchor_bottom = 0.575
+offset_left = -0.119999
+offset_top = 0.319977
+offset_right = 0.319992
+offset_bottom = -3.05176e-05
 
 [node name="matrix range label" type="Label" parent="HBoxContainer4"]
 layout_mode = 2
@@ -223,11 +277,16 @@ editable = false
 scroll_fit_content_height = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 411.0
-offset_right = 167.0
-offset_bottom = 561.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033
+anchor_top = 0.642
+anchor_right = 0.261
+anchor_bottom = 0.877
+offset_left = -0.119999
+offset_top = 0.119995
+offset_right = -0.0400085
+offset_bottom = -0.280029
 
 [node name="calculate linear system button" type="Button" parent="VBoxContainer2"]
 layout_mode = 2
@@ -249,22 +308,23 @@ autowrap_mode = 2
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -51.0
-offset_right = 51.0
-offset_bottom = -16.0
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.92
+anchor_right = 0.08
+anchor_bottom = 0.975
+offset_top = 0.200012
+offset_right = -0.200005
 grow_vertical = 0
 texture_normal = ExtResource("2_pdxve")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 4
 
 [node name="Window" type="Window" parent="."]
 title = "Протокол обчислень"
 initial_position = 1
 size = Vector2i(480, 445)
+visible = false
 
 [node name="window output control" type="Control" parent="Window"]
 layout_mode = 3
@@ -291,10 +351,12 @@ text = "Скопіювати текст"
 [node name="window output richlabel" type="RichTextLabel" parent="Window/window output control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 2
 bbcode_enabled = true
 text = "..."
 selection_enabled = true
 
+[connection signal="pressed" from="own variant button" to="." method="_on_own_variant_button_pressed"]
 [connection signal="pressed" from="VBoxContainer2/show window output" to="." method="_on_show_window_output_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_github_pressed"]
 [connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]

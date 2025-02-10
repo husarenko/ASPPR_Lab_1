@@ -333,3 +333,8 @@ func _on_show_window_output_pressed():
 func _on_save_as_file_button_pressed():
 	var text_to_copy = window_output_richlabel.get_text()
 	DisplayServer.clipboard_set(text_to_copy)
+
+
+func _on_own_variant_button_pressed():
+	matrix_a_input.text = "-2 5 1\n-1 4 2\n1 3 -2"
+	matrix_b_input.text = "4\n5\n6"
