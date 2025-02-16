@@ -235,6 +235,9 @@ func calculate_inverse_matrix_with_protocol(matrix: Array) -> Array:
 
 	var protocol_steps = []
 	protocol_steps.append("\nПротокол обчислення:")
+	
+	var matrix_rank = calculate_matrix_rank(matrix)
+	protocol_steps.append("\nРанг матриці: " + str(matrix_rank))
 
 	for r in range(n):
 		steps += 1
