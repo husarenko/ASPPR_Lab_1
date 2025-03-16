@@ -1,0 +1,17 @@
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\bin\Debug\net8.0-windows\Lab_1.exe
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\bin\Debug\net8.0-windows\Lab_1.deps.json
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\bin\Debug\net8.0-windows\Lab_1.runtimeconfig.json
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\bin\Debug\net8.0-windows\Lab_1.dll
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\bin\Debug\net8.0-windows\Lab_1.pdb
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.Form1.resources
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.csproj.GenerateResource.cache
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.GeneratedMSBuildEditorConfig.editorconfig
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.AssemblyInfoInputs.cache
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.AssemblyInfo.cs
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.csproj.CoreCompileInputs.cache
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.dll
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\refint\Lab_1.dll
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.pdb
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.genruntimeconfig.cache
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\ref\Lab_1.dll
+E:\Course 3\Semester 2\АСППР\Lab_1\src\Lab_1\obj\Debug\net8.0-windows\Lab_1.ProtocolForm.resources
